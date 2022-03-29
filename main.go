@@ -10,7 +10,7 @@ var flagvar string
 
 func init() {
 	const (
-		defaultPath = "db.csv"
+		defaultPath = "db.json"
 		usage       = "Флаг выбран"
 	)
 	flag.StringVar(&flagvar, "input", defaultPath, usage)
@@ -18,15 +18,15 @@ func init() {
 func main() {
 
 	flag.Parse()
-	if flagvar[len(flagvar)-2:] == "sv" {
-		listProduct := internal.ReadCsvFile(flagvar)
-		popularProduct := internal.CompareCSV(listProduct)
-		fmt.Printf("%+v\n", popularProduct)
-	} else {
 
-		listProduct := internal.ReadJsonFile(flagvar)
-		popularProduct := internal.CompareJSON(listProduct)
-		fmt.Printf("%+v\n", popularProduct)
+	interProduct := internal.NewProduct()
+	if flagvar[len(flagvar)-2:] == "sv" {
+		product := internal.ReadCsvFile2(flagvar, interProduct)
+		fmt.Printf("%+v", product)
+
+	} else {
+		product := internal.ReadJsonFile2(flagvar, interProduct)
+		fmt.Printf("%+v", product)
 
 	}
 

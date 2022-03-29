@@ -4,8 +4,8 @@ ADD . /usr/src/ExpensiveProduct
 
 WORKDIR /usr/src/ExpensiveProduct
 
-RUN go get github.com/codegangsta/gin
+# Build the Go app
+RUN go build -o main .
 
-RUN go build
-
-CMD bash -c "cd /tmp && gin --path /usr/src/ExpensiveProduct"
+# Command to run the executable
+CMD ["./main"]

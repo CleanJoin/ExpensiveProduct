@@ -5,3 +5,13 @@ type Product struct {
 	Price   int    `json:"price"`
 	Rating  int    `json:"rating"`
 }
+
+type IProduct interface {
+	CompareJSON(listProduct map[string]interface{}) *Product
+	CompareCSV(listProduct []string) *Product
+}
+
+func NewProduct() *Product {
+	product := new(Product)
+	return product
+}
